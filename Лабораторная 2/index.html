@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Быстрый перелет</title>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"/>
+    <link href="default.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="fonts.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function MyHeaderLogo() {
+        return (
+            <div id="logo">
+                <h1><a href="#">Быстрый перелет</a></h1>
+                <p><a href="http://templated.co" rel="nofollow">турагенство международного уровня</a></p>
+            </div>
+        );
+    }
+
+    function MyHeaderSocial() {
+        return (
+            <div id="social">
+                <ul className="contact">
+                    <li><a href="#" className="icon icon-twitter"><span>Twitter</span></a></li>
+                    <li><a href="#" className="icon icon-facebook"><span></span></a></li>
+                    <li><a href="#" className="icon icon-dribbble"><span>Pinterest</span></a></li>
+                    <li><a href="#" className="icon icon-tumblr"><span>Google+</span></a></li>
+                    <li><a href="#" className="icon icon-rss"><span>Pinterest</span></a></li>
+                </ul>
+            </div>
+        );
+    }
+
+    function MyHeaderNavigaion() {
+        return (
+            <nav id="nav" className="container">
+                <ul style={{margin: 0}} >
+                    <li className="current_page_item"><a href="#" accessKey="1" title="">Домашняя страница</a></li>
+                    <li><a href="#" accessKey="1" title="">Путевки</a></li>
+                    <li><a href="#" accessKey="2" title="">Наши клиенты</a></li>
+                    <li><a href="#" accessKey="3" title="">О нас</a></li>
+                    <li><a href="#" accessKey="4" title="">Личный кабинет</a></li>
+                    <li><a href="#" accessKey="5" title="">Контакты</a></li>
+                </ul>
+            </nav>
+        );
+    }
+
+    function MyHeader() {
+        return (
+            <header>
+                <div id="header" className="container">
+                    <MyHeaderLogo/>
+                    <MyHeaderSocial/>
+                </div>
+                <MyHeaderNavigaion/>
+            </header>
+        );
+    }
+
+    function MyArticleFirst() {
+        return (
+            <article>
+                <div className="angry-grid">
+                    <div id="item-0">
+                        <div className="title">
+                            <h2>Maecenas luctus</h2>
+                        </div>
+                        <p>Быстрый перелет - турагество <strong>международного </strong> уровня, специализирующееся на предоставлении путевок во все стороны света по доступным ценам. Наша компания обеспечивает круглосуточную связь и поддержку с нашими клиентами, помогая организовать не только авиаперелет или водный круиз, но и способствуя поиску увлекательных активностей по месту прибытия.</p>
+                    </div>
+                    <div id="item-1">
+                        <div className="title">
+                            <h2 id="Europe">Европа</h2>
+                        </div>
+                        <div className="Europe">
+                            <img src="images/Europe.jpg" alt=""/>
+                            <p>Посетите одну из стран Старого света, вдохновившись духом романтического Парижа, креативного Берлина или современного Лондона</p>
+                        </div>
+                    </div>
+                    <div id="item-2">
+                        <div className="title">
+                            <h2 id="Asia">Азия</h2>
+                        </div>
+                        <div className="Asia">
+                            <img src="images/Asia.jpg" alt=""/>
+                            <p>Познакомьтесь с загадочным и незнакомым миром Азии, посетив густонаселенные Мумбаи, футуристичный Гонконг или живущие в гармонии с природой Катманду</p>
+                        </div>
+                    </div>
+                    <div id="item-3">
+                        <div className="title">
+                            <h2 id="America">Америка</h2>
+                        </div>
+                        <div className="America">
+                            <img src="images/America2.jpg" alt=""/>
+                            <p>Покорите Новый Свет, познакомившись с дикими джнунглями Амазонки, живописными равнинами Рио-де-Плата или огненно-красным Гранд-Каньоном</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        );
+    }
+
+    function MyArticleSecond() {
+        return (
+            <article>
+                <div id="portfolio">
+                    <div className="title">
+                        <h2>Полезные ссылки</h2>
+                        <span className="byline">Ознакомьтесь с различными разделами нашего сайта, для выбора путешествия вашей мечты</span></div>
+                    <div className="flex-container">
+                        <div className="item1">
+                            <div className="box">
+                                <h3>Путевки</h3>
+                                <p>Список и расписание доступных путевок во все части света</p>
+                                <a href="#" className="button">Перейти</a></div>
+                        </div>
+                        <div className="item2">
+                            <div className="box">
+                                <h3>Личный кабинет</h3>
+                                <p>Отслеживайте интересующие вас путевки и сравнивайте предложения</p>
+                                <a href="#" className="button">Перейти</a></div>
+                        </div>
+                        <div className="item3">
+                            <div className="box">
+                                <h3>О нас</h3>
+                                <p>Краткая история компании, а также наши ключевые принципы</p>
+                                <a href="#" className="button">Перейти</a></div>
+                        </div>
+                        <div className="item4">
+                            <div className="box">
+                                <h3>Контакты</h3>
+                                <p>Основные способы связаться с нами и уточнить волнующие вас вопросы</p>
+                                <a href="#" className="button">Перейти</a></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        );
+    }
+
+    function MySection() {
+        return (
+            <section>
+                <MyArticleFirst/>
+                <MyArticleSecond/>
+            </section>
+        );
+    }
+
+    function MyFooter() {
+        return (
+            <footer>
+                <p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+                    Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+            </footer>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementsByTagName("body")[0])
+        .render(
+            <div id="wrapper">
+                <MyHeader/>
+                <MySection/>
+                <MyFooter/>
+            </div>
+        )
+</script>
+<!--<script>-->
+
+<!--    const btn_europe = document.getElementById('Europe')-->
+<!--    const btn_asia = document.getElementById('Asia')-->
+<!--    const btn_america = document.getElementById('America')-->
+
+<!--    btn_europe.addEventListener('click', function display_europe(){-->
+<!--        document.getElementsByClassName('Europe')[0].style.display = "block";-->
+<!--    })-->
+
+<!--    btn_asia.addEventListener('click', function display_asia(){-->
+<!--        document.getElementsByClassName('Asia')[0].style.display = "block";-->
+<!--    })-->
+
+<!--    btn_america.addEventListener('click', function display_america(){-->
+<!--        document.getElementsByClassName('America')[0].style.display = "block";-->
+<!--    })-->
+
+<!--</script>-->
+</body>
+</html>

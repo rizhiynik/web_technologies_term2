@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add React in One Minute</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    #text_container {
+      font-size: 40px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .image-container {
+      position: relative;
+      display: inline-block;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .like-button {
+      position: relative;
+      bottom: -10px;
+      left: -10px;
+    }
+    .dislike-button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="text_container" class="bg-light p-3"></div>
+  <div class="image-container">
+    <div id="image_container"></div>
+    <div id="like_button_container" class="like-button btn btn-success"></div>
+    <div id="dislike_button_container" class="dislike-button btn bg-danger"></div>
+  </div>
+</div>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="like_button.js"></script>
+</body>
+</html>

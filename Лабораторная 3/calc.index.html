@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <style>
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .calculator input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .calculator button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .calculator .row {
+            margin-bottom: 10px;
+        }
+        #hist {
+            margin-top: 30px;
+            margin-left: 220px;
+        }
+    </style>
+</head>
+<body>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function InputField() {
+        return(
+            <input type="text" id="result" readOnly/>
+        );
+    }
+
+    function FirstRow() {
+        return(
+            <div className="row">
+                <div className="col-md-3"><button onClick={() => clearResult()}>C</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('/')}>/</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('*')}>*</button></div>
+                <div className="col-md-3"><button onClick={() => calculate()}>=</button></div>
+            </div>
+        );
+    }
+
+    function SecondRow() {
+        return (
+            <div className="row">
+                <div className="col-md-3"><button onClick={() => appendToResult('7')}>7</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('8')}>8</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('9')}>9</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('-')}>-</button></div>
+            </div>
+        );
+    }
+
+    function ThirdRow() {
+        return(
+            <div className="row">
+                <div className="col-md-3"><button onClick={() => appendToResult('4')}>4</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('5')}>5</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('6')}>6</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('+')}>+</button></div>
+            </div>
+        );
+    }
+
+    function FourthRow() {
+        return(
+            <div className="row">
+                <div className="col-md-3"><button onClick={() => appendToResult('1')}>1</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('2')}>2</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('3')}>3</button></div>
+                <div className="col-md-3"><button onClick={() => appendToResult('.')}>.</button></div>
+            </div>
+        );
+    }
+
+    function FifthRow() {
+        return(
+            <div className="row">
+                <div className="col-md-6"><button onClick={() => appendToResult('0')}>0</button></div>
+                <div className="col-md-6"><button onClick={() => backspace()}>&larr;</button></div>
+            </div>
+        );
+    }
+
+    function Main() {
+        return(
+                <div className="row">
+                    <div className="col-md-4 offset-md-4 calculator">
+                        <InputField/>
+                        <FirstRow/>
+                        <SecondRow/>
+                        <ThirdRow/>
+                        <FourthRow/>
+                        <FifthRow/>
+                    </div>
+                    <div id="hist"></div>
+                </div>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementsByTagName('body')[0]).render(
+        <div className="container">
+            <Main/>
+        </div>
+    );
+</script>
+<script>
+    const history = [];
+
+    function appendToResult(value) {
+        document.getElementById('result').value += value;
+    }
+    function clearResult() {
+        document.getElementById('result').value = '';
+    }
+    function backspace() {
+        const result = document.getElementById('result');
+        result.value = result.value.slice(0, -1);
+    }
+
+    function calculate() {
+        const expr = document.getElementById('result').value;
+        const operators = ['+', '-', '/', '*'];
+        let operatorIndex = -1;
+        let operator = '';
+        let operand1 = '';
+        let operand2 = '';
+        let result = '';
+        for (let i = 0; i < operators.length; i++) {
+            operatorIndex = expr.slice(0, expr.length).indexOf(operators[i]);
+            if (operatorIndex !== -1) {
+                operator = operators[i];
+                break;
+            }
+        }
+        if (operatorIndex === -1) {
+            result = 'no input';
+        }
+        operand1 = expr.slice(0, operatorIndex).trim();
+        operand2 = expr.slice(operatorIndex + 1).trim();
+
+        if (operator === '+') {
+            result = parseInt(operand1) + parseInt(operand2);
+        }
+        else if (operator === '-') {
+            result = parseInt(operand1) - parseInt(operand2);
+        }
+        else if (operator === '*') {
+            result = parseInt(operand1) * parseInt(operand2);
+        }
+        else if (operator === '/') {
+            result = parseInt(operand1) / parseInt(operand2);
+        }
+
+        document.getElementById('result').value = result;
+        history.push(operand1 + operator + operand2 + '=' + result);
+
+        let histContainer = document.getElementById("hist");
+
+        history.forEach(function(element) {
+            let newElement = document.createElement("p");
+            newElement.textContent = element;
+            histContainer.appendChild(newElement);
+            history.pop();
+        });
+    }
+</script>
+</body>
+</html>

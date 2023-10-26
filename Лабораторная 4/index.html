@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Книжный магазин</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <style>
+    .flex-container {
+
+      display: flex;
+
+      justify-content: space-around;
+      height: 100%;
+      padding: 15px;
+      gap: 5px;
+
+    }
+
+    .flex-container>div {
+      padding: 8px;
+    }
+
+    .article {
+      position: absolute;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Header() {
+      return (
+        <div class="pos-f-t">
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-light p-4">
+              <h4 class="text-white">Collapsed content</h4>
+              <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+          </div>
+          <nav class="navbar navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+              aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" style={{ marginLeft: "10px" }}>
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 style={{ display: "flex", justifyContent: "center", marginLeft: "175px" }}>Книжный магазин</h1>
+            <form class="form-inline">
+              <div class="input-group" style={{ marginRight: "10px" }}>
+                <input class="form-control mr-sm-2" type="search" placeholder="Введите название книги" aria-label="Введите название книги" />
+                <div class="input-group-append" style={{ marginLeft: "5px", marginRight: "10px" }}>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                </div>
+              </div>
+            </form>
+          </nav>
+        </div>
+      );
+    }
+
+    function Navbar() {
+      return (
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style={{ display: "flex", justifyContent: "center" }}>
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="#"><h5>Главная страница</h5></a>
+              <a class="nav-item nav-link" href="#"><h5>Ассортимент</h5></a>
+              <a class="nav-item nav-link" href="#"><h5>Доставка</h5></a>
+              <a class="nav-item nav-link" href="#"><h5>Личный кабинет</h5></a>
+            </div>
+          </div>
+        </nav>
+      );
+    }
+
+    function Card({ author, title, price, imageUrl, size = 200 }) {
+      return (
+        <div>
+          <a href="#"><img
+            className="avatar"
+            src={imageUrl}
+            alt={title}
+            width={size}
+            height={size}
+          /></a>
+          <ul>
+            <li><b>Автор: </b>{author}</li>
+            <li><b>Название: </b>{title}</li>
+            <li><b>Цена: </b>{price}</li>
+          </ul>
+        </div>
+      );
+    }
+
+    function SmallCard({ text, imageUrl, size = 150 }) {
+      return (
+        <div>
+          <a href="#"><img
+            className="avatar"
+            src={imageUrl}
+            alt={text}
+            width={size}
+            height={size}
+          /></a>
+          <p className="article">{text}</p>
+        </div>
+      );
+    }
+
+    function Book(props) {
+      return (
+        <Card {...props} />
+      );
+    }
+
+    function Article(props) {
+      return (
+        <SmallCard {...props} />
+      );
+    }
+
+    function Gallery() {
+      const booksItems = books.map(book => (
+        <div className='item${book.id}'>
+          <Book author={book.author} title={book.title} price={book.price} imageUrl={book.imageUrl} />
+        </div>
+      ))
+
+      return (
+        <div className="flex-container">
+          {booksItems}
+        </div>
+      )
+    }
+
+    function News() {
+      const newsItems = news.map(article => (
+        <div className="item${article.id}">
+          <Article text={article.text} imageUrl={article.imageUrl} />
+        </div>
+      ))
+
+      return (
+        <div className="flex-container" style={{marginBottom: "75px"}}>
+          {newsItems}
+        </div>
+      )
+    }
+
+    let books = [
+      {
+        id: 0,
+        author: 'Ф.М.Достоевский',
+        title: 'Идиот',
+        price: '₽250',
+        imageUrl: 'https://fkniga.ru/media/product/04/040404/KA-00294261.jpg'
+      },
+      {
+        id: 1,
+        author: 'Р.Д.Рэдбери',
+        title: 'Вельд',
+        price: '₽450',
+        imageUrl: 'https://avatars.dzeninfra.ru/get-zen_doc/5130440/pub_633632c9377cf80d8e168e1f_6336331da1980f7c59b71f77/scale_1200'
+      },
+      {
+        id: 2,
+        author: 'Гомер',
+        title: 'Иллиада',
+        price: '₽200',
+        imageUrl: 'https://cloud10.todocoleccion.online/libros-clasicos-segunda-mano/tc/2017/05/19/19/86947120.jpg'
+      }
+    ]
+
+    let news = [
+      {
+        id: 3,
+        text: 'Литературный круглый стол',
+        imageUrl: 'data:image/jpeg;base64,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'
+      },
+      {
+        id: 4,
+        text: 'Выставка в картинной галерее',
+        imageUrl: 'https://primamediamts.servicecdn.ru/f/big/2507/2506064.jpg?a7145daca9e049401ff3f831b9026fec'
+      },
+      {
+        id: 5,
+        text: 'История российского классицизма',
+        imageUrl: 'https://alldaily.ru/wp-content/uploads/2022/06/749471251.jpg'
+      },
+      {
+        id: 6,
+        text: 'Рейтинг современной литературы по мнению читателей',
+        imageUrl: 'https://img.freepik.com/free-vector/top-10-best-award-label-golden-badge-symbol-design_1017-32085.jpg'
+      }
+    ]
+
+    function Footer() {
+      return (
+        <footer class="footer bg-dark text-white">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>About Us</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p>Email: info@example.com</p>
+                <p>Phone: 123-456-7890</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementsByTagName("body")[0])
+      .render(
+        <div id="wrapper">
+          <Header />
+          <Navbar />
+          <Gallery />
+          <News />
+          <Footer />
+        </div>
+      )
+  </script>
+</body>
+
+</html>
